@@ -5,11 +5,16 @@ import { connect } from 'react-redux';
 
 import ViewHeader from './components/ViewHeader';
 import Diagram from './components/Diagram';
+import LanguageSelection from './components/LanguageSelection';
 
 import { getExpendituresRequest } from './home.slice';
 
 import './styles.scss';
 import centimeLogo from './centimeLogo.jpeg';
+
+import { availableLanguages } from './mockData';
+
+import i18n, { getSelectedLanguageCode } from './../i18n';
 
 type HomeViewPropsType = {
 	getExpenditures: () => void,
@@ -26,12 +31,16 @@ const HomeView = (props: HomeViewPropsType) => {
 
 	return (
 		<div className='mainContainer'>
-			<ViewHeader imageUrl={centimeLogo} title='centime' subTitle='Cash flow matters' />
+			<ViewHeader imageUrl={centimeLogo} title='centime' subTitle={i18n.t(['cashflowSubtitle'])} />
 			{isLoading ? (
-				<div>Loading Please Wait</div>
+				<div>{i18n.t(['loading'])}</div>
 			) : (
 				<Diagram expenditures={expenditures} isLoading={isLoading} />
 			)}
+			<LanguageSelection
+				availableLanguages={availableLanguages}
+				languageCode={() => getSelectedLanguageCode()}
+			/>
 		</div>
 	);
 };

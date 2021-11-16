@@ -9,3 +9,19 @@ export default {
 		['Bill', 'Mobile', 2000],
 	],
 };
+
+
+export const availableLanguages = [
+	{
+		name: 'English',
+		value: 'en',
+	},
+	{
+		name: 'German',
+		value: 'gr',
+	},
+	{
+		name: 'French',
+		value: 'fr',
+	},
+];

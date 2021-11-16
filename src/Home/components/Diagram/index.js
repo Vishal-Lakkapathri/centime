@@ -12,7 +12,6 @@ const Diagram = ({ expenditures }: DiagramPropsType) => {
 				width={600}
 				height={300}
 				chartType='Sankey'
-				loader={<div>Loading Chart</div>}
 				data={expenditures}
 				rootProps={{ 'data-testid': '1' }}
 			/>
