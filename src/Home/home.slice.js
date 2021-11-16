@@ -1,8 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { getSelectedLanguageCode } from './../i18n';
+
 const initialState = {
 	isLoading: false,
-	expeditures: [],
+	expenditures: [],
+  languageCode: getSelectedLanguageCode()
 };
 
 export const homeSlice = createSlice({
@@ -18,7 +21,10 @@ export const homeSlice = createSlice({
 		},
 		getExpendituresFailure: (state: StateType) => {
 			state.isLoading = false;
-		}
+		},
+    setLanguageCode: (state: StateType, action: ActionType) => {
+      state.languageCode = action.payload
+    }
 	},
 });
 
@@ -26,6 +32,7 @@ export const {
 	getExpendituresRequest,
 	getExpendituresSuccess,
 	getExpendituresFailure,
+  setLanguageCode,
 } = homeSlice.actions;
 
 export default homeSlice.reducer;

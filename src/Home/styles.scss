@@ -1,4 +1,31 @@
 .mainContainer {
   display: flex;
   flex-direction: column;
+  border: 1px solid rgb(2, 2, 2);
+}
+
+.bodyContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgb(2, 2, 2);
+}
+
+.diagramTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:rgb(2, 2, 2);
+  padding-top: 5%;
+  padding-bottom: 3%;
+}
+
+.diagramContainer {
+  padding: 1%;
+}
+
+.languageSelectionContainer {
+  display: flex;
+  justify-content: center;
+  padding: 5%;
 }

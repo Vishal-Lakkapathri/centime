@@ -9,8 +9,8 @@ const Diagram = ({ expenditures }: DiagramPropsType) => {
 	return (
 		<div>
 			<Chart
-				width={600}
-				height={300}
+				width={800}
+				height={600}
 				chartType='Sankey'
 				data={expenditures}
 				rootProps={{ 'data-testid': '1' }}

@@ -5,7 +5,7 @@ import US_EN from './utils/languages/us_en';
 import FR_CA from './utils/languages/fr_ca';
 import DE_DE from './utils/languages/de_de';
 
-export const getSelectedLanguageCode = () => localStorage.getItem('selectedLanguageCode') || 'en';
+export const getSelectedLanguageCode = () => localStorage.getItem('selectedLanguageCode');
 
 const resources = {
 	en: {

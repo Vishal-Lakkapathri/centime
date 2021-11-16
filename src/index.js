@@ -6,6 +6,8 @@ import App from './App';
 
 import { store } from './store';
 
+import './i18n.js'
+
 ReactDOM.render(
 	<Provider store={store}>
 		<App />
