@@ -5,18 +5,14 @@ type DiagramPropsType = {
 	expenditures: Array<mixed>,
 };
 
-const Diagram = ({ expenditures }: DiagramPropsType) => {
-	return (
-		<div>
-			<Chart
-				width={800}
-				height={600}
-				chartType='Sankey'
-				data={expenditures}
-				rootProps={{ 'data-testid': '1' }}
-			/>
-		</div>
-	);
-};
+const Diagram = ({ expenditures }: DiagramPropsType) => (
+	<Chart
+		width={800}
+		height={600}
+		chartType='Sankey'
+		data={expenditures}
+		rootProps={{ 'data-testid': '1' }}
+	/>
+);
 
 export default Diagram;
