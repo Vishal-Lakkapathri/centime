@@ -1,11 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { getSelectedLanguageCode } from './../i18n';
+import { act } from "@testing-library/react";
 
 const initialState = {
 	isLoading: false,
 	expenditures: [],
-  languageCode: getSelectedLanguageCode()
+  languageCode: getSelectedLanguageCode(),
+  category: {},
+  deleteCategory: '',
 };
 
 export const homeSlice = createSlice({
@@ -24,8 +27,14 @@ export const homeSlice = createSlice({
 		},
     setLanguageCode: (state: StateType, action: ActionType) => {
       state.languageCode = action.payload
+    },
+    setCategoryValues: (state: StateType, action: ActionType) => {
+      state.category = action.payload
+    },
+    deleteCategoryValues: (state: StateType, action: ActionType) => {
+      state.deleteCategory = action.payload
     }
-	},
+	}
 });
 
 export const {
@@ -33,6 +42,8 @@ export const {
 	getExpendituresSuccess,
 	getExpendituresFailure,
   setLanguageCode,
+  setCategoryValues,
+  deleteCategoryValues
 } = homeSlice.actions;
 
 export default homeSlice.reducer;

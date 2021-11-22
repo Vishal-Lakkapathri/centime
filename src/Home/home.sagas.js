@@ -1,6 +1,6 @@
 // @flow
 import type { Saga } from 'redux-saga';
-import { takeLatest, call, put, all } from 'redux-saga/effects';
+import { takeLatest, call, put, all, select } from 'redux-saga/effects';
 
 import { getExpendituresService } from './home.services';
 
@@ -8,7 +8,11 @@ import {
 	getExpendituresRequest,
 	getExpendituresSuccess,
 	getExpendituresFailure,
+	setCategoryValues,
+	deleteCategoryValues,
 } from './home.slice';
+
+const getExpendituresFromState = (state) => state.home.expenditures;
 
 function* getExpenditures(): Saga<void> {
 	try {
@@ -22,6 +26,25 @@ function* getExpenditures(): Saga<void> {
 	}
 }
 
+function* setExpenditures({ payload }): Saga<void> {
+	const expenditures = yield select(getExpendituresFromState);
+	const { fromCategory, toCategory, weight } = payload;
+	return yield put(getExpendituresSuccess([...expenditures, [fromCategory, toCategory, weight]]));
+}
+
+function* deleteCategory({ payload }): Saga<void> {
+	const expenditures = yield select(getExpendituresFromState);
+	const { deleteCategoryValue } = payload;
+	const formattedValues = expenditures.filter(
+		(val) => val[0] !== deleteCategoryValue && val[1] !== deleteCategoryValue
+	);
+	return yield put(getExpendituresSuccess(formattedValues));
+}
+
 export default function* homeSagas(): Saga<void> {
-	yield all([takeLatest(getExpendituresRequest.toString(), getExpenditures)]);
+	yield all([
+		takeLatest(getExpendituresRequest.toString(), getExpenditures),
+		takeLatest(setCategoryValues.toString(), setExpenditures),
+		takeLatest(deleteCategoryValues.toString(), deleteCategory),
+	]);
 }
